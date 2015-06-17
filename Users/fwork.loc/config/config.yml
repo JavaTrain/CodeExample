@@ -1,0 +1,9 @@
+mysql:
+  type: "mysql"
+  host: "127.0.0.1"
+  username: "root"
+  pass: "123"
+  db: "chrisdb"
+session:
+  session_name: "user_yml"
+  token_name: "token_yml"

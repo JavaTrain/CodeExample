@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Users{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+
+    {% block stylesheets %}
+        {% stylesheets '@bootstrap_less' combine=true %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('bundles/testuser/css/mystyle.css') }}" rel="stylesheet" />
+        {% endstylesheets %}
+    {% endblock %}
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../../assets/js/html5shiv.js"></script>
+    <script src="../../assets/js/respond.min.js"></script>
+
+    <![endif]-->
+</head>
+<body>
+
+{% block body %}
+
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <ul class="nav">
+                        <li class="active"><a href="{{ path('user') }}">Users</a></li>
+                        <li><a href="{{ path('course') }}">Course</a></li>
+                        <li><a href="{{ path('group') }}">Groups</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div><!-- /.navbar -->
+
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@jquery_js' '@bootstrap_js' filter='?yui_js' combine=true %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+</body>
+</html>

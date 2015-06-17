@@ -1,0 +1,55 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}User test{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('bundles/testuser/css/mystyle.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="container">
+        {% if users is defined %}
+        <table class="table my-style">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Course</th>
+                <th>Group</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.name }}</a></td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>
+                        {% for course in user.getCourses %}
+                            {{ course.name }}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for group in user.getGroups %}
+                            {{ group.room() }}
+                        {% endfor %}
+                    </td>
+                    <td><a href="{{ path('user_edit', { 'id':user.getId }) }}">Edit</a></td>
+                    <td><a href="{{ path('user_delete', { 'id':user.getId }) }}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+
+        <br />
+
+        <a href="{{ path('user_new') }}" class='btn btn-primary btn-lg btn-block'>
+            Create new person
+        </a>
+
+    </div>
+{% endblock %}
